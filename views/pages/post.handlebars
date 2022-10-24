@@ -1,0 +1,39 @@
+{{#if post}}
+<div>
+  <a href="/home">Go back to home</a>
+  <a href="/profile/{{post.post_author}}">Visit user profile</a>
+</div>
+<div>
+  <h3> {{post.fullname}} </h3>
+  <span> {{post.post_created}} </span>
+  <p> {{post.post_text}} </p>
+</div>
+{{/if}}
+
+{{#if post}}
+<form action="/comment/{{post.post_id}}" method="post">
+  <label for="comment_text">Comment</label>
+  <textarea name="comment_text" id="comment_text" cols="20" rows="4" required></textarea>
+  <button type="submit">Post</button>
+</form>
+{{/if}}
+
+{{#if comments}}
+{{#each comments}}
+<div>
+  <h4>{{this.fullname}}</h4>
+  <span>{{this.comment_created}}</span>
+  <p>{{this.comment_text}}</p>
+</div>
+<div> 
+  <a href="/post/{{../post.post_id}}/comment/{{comment_id}}">View comment replies</a>
+</div>
+{{/each}}
+{{/if}}
+
+{{#unless comments}}
+<h4>No comments</h4>
+{{/unless}}
+{{#unless post}}
+  <h1>Post Not Found</h1>
+{{/unless}}

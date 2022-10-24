@@ -1,0 +1,30 @@
+<h1>Welcome page</h1>
+
+<p>Hello {{ fullname }} </p>
+
+<a href="/profile">Go to profile</a>
+<a href="/messages">Go to messages</a>
+
+<form action="/logout" method="post">
+  <button type="submit">Logout</button>
+</form>
+
+{{#if posts}}
+<div>
+  {{#each posts}}
+  <div>
+    <h3> {{fullname}} </h3>
+    <span> {{post_created}} </span>
+    <p> {{post_text}} </p>
+  </div>
+  <div>
+    <a href="/post/{{post_id}}">View post</a>
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+{{#unless posts}}
+<div>
+  <h2>The are no posts available.</h2>
+</div>
+{{/unless}}

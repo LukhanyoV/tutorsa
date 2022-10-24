@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+{{#if messages.error}}
+    <p>{{messages.error}}</p>
+{{/if}}
+
+{{#if messages.success}}
+    <p>{{messages.success}}</p>
+{{/if}}
+
+
+<form action="/login" method="POST">
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="on" required>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+<a href="/register">Don't have an account?</a>

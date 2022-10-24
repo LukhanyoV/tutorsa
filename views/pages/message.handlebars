@@ -1,0 +1,22 @@
+<h1>Message:</h1>
+<h2>{{friend}}({{account_type}})</h2>
+
+<form action="/message/{{user_id}}" method="post">
+  <label for="message_text">Message</label>
+  <textarea name="message_text" id="message_text" cols="20" rows="4" required></textarea>
+  <button type="submit">Message</button>
+</form>
+
+{{#if msg}}
+<div class="messages">
+  {{#each messages}}
+  <div class="message">
+    <h3>{{sender_name}}</h3>
+    <p>{{message_text}}</p>
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+{{#unless msg}}
+<h1>No messages</h1>
+{{/unless}}
