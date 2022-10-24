@@ -92,10 +92,12 @@ const User = (userService, usersService) => {
                 key = msg.receiver_name
                 id = msg.receiver_id
             }
+            console.log(pastMsg)
             if(msgMap[key] === undefined){
                 msgMap[key] = {
                     id,
-                    lastText: msg.message_text
+                    lastText: msg.message_text,
+                    time: moment(msg.message_created).fromNow()
                 }
             }
         })
