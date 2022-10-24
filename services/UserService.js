@@ -21,11 +21,24 @@ const UserService = (db) => {
         return await db.none("INSERT INTO messages (message_sender, message_receiver, message_text) VALUES ($1, $2, $3)", [message_sender, message_receiver, message_text])
     }
 
+    // get past messages
+    const getPastMessages = async (user) => {
+        return await db.manyOrNone(`
+        SELECT mA.fullname AS sender_name, mA.id AS sender_id, mB.fullname AS receiver_name, mB.id AS receiver_id, message_text, message_created FROM messages 
+        INNER JOIN members AS mA 
+        ON mA.id = messages.message_sender 
+        INNER JOIN members AS mB 
+        ON mB.id = messages.message_receiver 
+        WHERE message_sender = $1 OR message_receiver = $1
+        `, [user])
+    }
+
     return {
         makePost,
         getMyPosts,
         getMessages,
-        sendMessage
+        sendMessage,
+        getPastMessages
     }
 }
 
