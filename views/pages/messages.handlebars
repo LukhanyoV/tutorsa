@@ -1,1 +1,16 @@
 <h1>Messages</h1>
+
+{{#if msgMap}}
+{{#each msgMap}}
+<div class="message-item">
+    <a href="/message/{{id}}">
+        <h4>{{@key}}</h4>
+    </a>
+    <em>{{lastText}}</em>
+</div>
+{{/each}}
+{{/if}}
+
+{{#unless msgMap}}
+<h3>You do not have any messages</h3>
+{{/unless}}

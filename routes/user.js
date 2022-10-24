@@ -80,7 +80,28 @@ const User = (userService, usersService) => {
 
     // past messaged people
     const pastMessages = async (req, res) => {
-        res.render("pages/messages")
+        const {id, fullname} = req.user
+        const pastMsg = await userService.getPastMessages(id)
+        const msgMap = {}
+        pastMsg.forEach(msg => {
+            let key, id
+            if(msg.sender_name !== fullname){
+                key = msg.sender_name
+                id = msg.sender_id
+            } else {
+                key = msg.receiver_name
+                id = msg.receiver_id
+            }
+            if(msgMap[key] === undefined){
+                msgMap[key] = {
+                    id,
+                    lastText: msg.message_text
+                }
+            }
+        })
+        res.render("pages/messages", {
+            msgMap
+        })
     }
 
     return {
