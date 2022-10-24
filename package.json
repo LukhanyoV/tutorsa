@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "node start"
+    "start": "node start",
+    "dev": "nodemon start"
   },
   "author": {
     "name": "Lukhanyo Vakele"
@@ -24,5 +25,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "pg-promise": "^10.12.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.1"
   }
 }
