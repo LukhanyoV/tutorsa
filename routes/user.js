@@ -92,14 +92,15 @@ const User = (userService, usersService) => {
                 key = msg.receiver_name
                 id = msg.receiver_id
             }
-            console.log(pastMsg)
             if(msgMap[key] === undefined){
                 msgMap[key] = {
                     id,
                     lastText: msg.message_text,
-                    time: moment(msg.message_created).fromNow()
+                    time: moment(msg.message_created).fromNow(),
+                    unread: 0
                 }
             }
+            if(msg.message_read === false && msg.receiver_id !== id) msgMap[key]['unread']++
         })
         res.render("pages/messages", {
             msgMap

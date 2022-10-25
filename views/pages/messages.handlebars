@@ -4,7 +4,7 @@
 {{#each msgMap}}
 <div class="message-item">
     <a href="/message/{{id}}">
-        <h4>{{@key}}</h4>
+        <h4>{{@key}} {{#if unread}}({{unread}}){{/if}}</h4>
     </a>
     <em>{{lastText}} - {{time}}</em>
 </div>

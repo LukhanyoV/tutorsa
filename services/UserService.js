@@ -13,6 +13,7 @@ const UserService = (db) => {
     // MESSAGES
     // get messages
     const getMessages = async (sender, receiver) => {
+        await db.none("UPDATE messages SET message_read = 't' WHERE message_sender = $2 AND message_receiver = $1 AND message_read = 'false'", [sender, receiver])
         return await db.manyOrNone("SELECT mA.fullname AS sender_name, mA.id AS sender_id, mB.fullname AS receiver_name, mB.id AS receiver_id, message_text, message_created FROM messages INNER JOIN members AS mA ON mA.id = messages.message_sender INNER JOIN members AS mB ON mB.id = messages.message_receiver WHERE (message_sender = $1 AND message_receiver = $2) OR (message_sender = $2 AND message_receiver = $1) ORDER BY message_created DESC", [sender, receiver])
     }
 
@@ -24,12 +25,13 @@ const UserService = (db) => {
     // get past messages
     const getPastMessages = async (user) => {
         return await db.manyOrNone(`
-        SELECT mA.fullname AS sender_name, mA.id AS sender_id, mB.fullname AS receiver_name, mB.id AS receiver_id, message_text, message_created FROM messages 
+        SELECT mA.fullname AS sender_name, mA.id AS sender_id, mB.fullname AS receiver_name, mB.id AS receiver_id, message_text, message_created, message_read FROM messages 
         INNER JOIN members AS mA 
         ON mA.id = messages.message_sender 
         INNER JOIN members AS mB 
         ON mB.id = messages.message_receiver 
         WHERE message_sender = $1 OR message_receiver = $1
+        ORDER BY message_created DESC
         `, [user])
     }
 
