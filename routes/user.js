@@ -82,6 +82,7 @@ const User = (userService, usersService) => {
     const pastMessages = async (req, res) => {
         const {id, fullname} = req.user
         const pastMsg = await userService.getPastMessages(id)
+        const isVisible = pastMsg.length > 0
         const msgMap = {}
         pastMsg.forEach(msg => {
             let key, id
@@ -103,7 +104,8 @@ const User = (userService, usersService) => {
             if(msg.message_read === false && msg.receiver_id !== id) msgMap[key]['unread']++
         })
         res.render("pages/messages", {
-            msgMap
+            msgMap,
+            isVisible
         })
     }
 

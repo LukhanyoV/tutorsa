@@ -1,6 +1,6 @@
 <h1>Messages</h1>
 
-{{#if msgMap}}
+{{#if isVisible}}
 {{#each msgMap}}
 <div class="message-item">
     <a href="/message/{{id}}">
@@ -11,6 +11,6 @@
 {{/each}}
 {{/if}}
 
-{{#unless msgMap}}
+{{#unless isVisible}}
 <h3>You do not have any messages</h3>
 {{/unless}}
