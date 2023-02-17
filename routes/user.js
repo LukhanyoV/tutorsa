@@ -30,7 +30,13 @@ const User = (userService, usersService) => {
 
     // get edit user profile
     const editProfile = async (req, res) => {
-        res.render("pages/editprofile")
+        const {fullname, email, account_type} = req.user
+        const profile = {fullname, email}
+        res.render("pages/editprofile", {
+            profile,
+            isTutor: account_type === "tutor",
+            isStudent: account_type === "student"
+        })
     }
 
     // update profile data
