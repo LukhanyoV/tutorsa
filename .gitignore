@@ -1,4 +1,6 @@
-/.deta
-/node_modules
-/tutorsa-backend
-/tutorsa-frontend
+.deta/
+node_modules/
+tutorsa-backend/
+tutorsa-frontend/
+
+.idea/
