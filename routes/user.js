@@ -51,7 +51,7 @@ const User = (userService, usersService) => {
         if(messages) {
             messages = messages.map(message => {
                 let current_user = message.sender_id == id
-                return {...message, current_user: current_user}
+                return {...message, current_user: current_user, message_created: moment(message.message_created).fromNow()}
             })
         }
         res.render("pages/message", {
