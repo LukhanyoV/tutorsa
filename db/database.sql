@@ -1,0 +1,5 @@
+CREATE DATABASE tutorsa;
+
+CREATE ROLE tutorsa LOGIN PASSWORD 's3cur3';
+
+GRANT ALL PRIVILEGES ON DATABASE tutorsa TO tutorsa;
