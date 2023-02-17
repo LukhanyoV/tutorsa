@@ -53,7 +53,9 @@ const user = require("./routes/user")(userServive, usersService)
 const post = require("./routes/post")(userServive, postService)
 
 // main page
-app.get("/", (req, res) => res.render("index"))
+app.get("/", (req, res) => res.render("index", {
+    layout: "dashboard",
+}))
 
 // user authentication pages
 app.get("/login", checkNotAuthenticated, users.getLogin)
