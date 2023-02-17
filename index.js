@@ -52,6 +52,16 @@ const user = require("./routes/user")(userServive, usersService)
 // configure the post service
 const post = require("./routes/post")(userServive, postService)
 
+// badge count
+app.use(async (req, res, next) => {
+    if(req.user){
+        const {id} = req.user
+        const {count} = await userServive.unreadMessageBadge(id)
+        req.badges = {...req.badges, unreadMsgs: count}
+    }
+    next()
+})
+
 // main page
 app.get("/", (req, res) => res.render("index", {
     layout: "dashboard",

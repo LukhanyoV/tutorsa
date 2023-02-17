@@ -16,7 +16,8 @@ const Post = (userService, postService) => {
         }
         res.render("pages/post", {
             post,
-            comments
+            comments,
+            badges: req.badges
         })
     }
 
@@ -53,7 +54,8 @@ const Post = (userService, postService) => {
         res.render("pages/reply", {
             comment,
             replies,
-            post_id
+            post_id,
+            badges: req.badges
         })
     }
 

@@ -13,7 +13,8 @@ const Pages = (postService) => {
         }
         res.render("pages/home", {
             fullname,
-            posts
+            posts,
+            badges: req.badges
         })
     }
 

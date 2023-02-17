@@ -35,12 +35,18 @@ const UserService = (db) => {
         `, [user])
     }
 
+    // get number of unread messages
+    const unreadMessageBadge = async (user) => {
+        return await db.one("SELECT COUNT(DISTINCT message_sender) FROM messages WHERE message_receiver = $1 AND message_read = 'f'", [user])
+    }
+
     return {
         makePost,
         getMyPosts,
         getMessages,
         sendMessage,
-        getPastMessages
+        getPastMessages,
+        unreadMessageBadge
     }
 }
 

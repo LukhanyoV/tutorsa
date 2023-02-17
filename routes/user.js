@@ -25,7 +25,8 @@ const User = (userService, usersService) => {
             account_type,
             profile_id,
             isTutor: account_type === "tutor",
-            notMe
+            notMe,
+            badges: req.badges
         })
     }
 
@@ -36,7 +37,8 @@ const User = (userService, usersService) => {
         res.render("pages/editprofile", {
             profile,
             isTutor: account_type === "tutor",
-            isStudent: account_type === "student"
+            isStudent: account_type === "student",
+            badges: req.badges
         })
     }
 
@@ -47,7 +49,9 @@ const User = (userService, usersService) => {
 
     // get rate tutor
     const rateTutor = async (req, res) => {
-        res.render("pages/ratetutor")
+        res.render("pages/ratetutor", {
+            badges: req.badges
+        })
     }
 
     // send tutor rating
@@ -86,7 +90,8 @@ const User = (userService, usersService) => {
             messages,
             user_id,
             account_type: user.account_type,
-            msg: messages !== null
+            msg: messages !== null,
+            badges: req.badges
         })
     }
 
@@ -132,7 +137,8 @@ const User = (userService, usersService) => {
         })
         res.render("pages/messages", {
             msgMap,
-            isVisible
+            isVisible,
+            badges: req.badges
         })
     }
 
