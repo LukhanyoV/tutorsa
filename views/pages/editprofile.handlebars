@@ -14,17 +14,6 @@
         <input type="password" id="password" name="password" autocomplete="on" required>
     </div>
     <div>
-        <label>Account type</label>
-        <div>
-            <label for="tutor">
-                <input type="radio" name="account_type" id="tutor" value="tutor" {{#if isTutor}}checked{{/if}} required> Tutor
-            </label>
-            <label for="student">
-                <input type="radio" name="account_type" id="student" value="student" {{#if isStudent}}checked{{/if}}> Student
-            </label>
-        </div>
-    </div>
-    <div>
         <button type="submit">Update</button>
     </div>
 </form>
