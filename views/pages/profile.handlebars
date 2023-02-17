@@ -3,9 +3,10 @@
 <h2>Type: {{account_type}} </h2>
 
 {{#if notMe}}
-<a href="/message/{{profile_id}}">Message</a>
+<a href="/message/{{profile_id}}"><button>Message</button></a>
 {{/if}}
 {{#unless notMe}}
+<a href="/profile/edit"><button>Edit profile</button></a>
 <form action="/post" method="post">
   <label for="post_text">Post</label>
   <textarea name="post_text" id="post_text" cols="20" rows="4" required></textarea>

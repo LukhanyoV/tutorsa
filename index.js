@@ -70,6 +70,8 @@ app.post("/logout", users.logoutUser)
 
 // profile page
 app.get("/profile", checkAuthenticated, user.profile)
+app.get("/profile/edit", checkAuthenticated, user.editProfile)
+app.post("/profile/edit", checkAuthenticated, user.updateProfile)
 app.get("/profile/:profile_id", checkAuthenticated, user.profile)
 app.post("/post", checkAuthenticated, user.makePost)
 

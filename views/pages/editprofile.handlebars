@@ -1,0 +1,30 @@
+<h1>Edit profile</h1>
+
+<form action="/profile/edit" method="post">
+    <div>
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="fullname" required>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="on" required>
+    </div>
+    <div>
+        <label>Account type</label>
+        <div>
+            <label for="tutor">
+                <input type="radio" name="account_type" id="tutor" value="tutor" required> Tutor
+            </label>
+            <label for="student">
+                <input type="radio" name="account_type" id="student" value="student"> Student
+            </label>
+        </div>
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>

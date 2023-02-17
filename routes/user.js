@@ -28,6 +28,16 @@ const User = (userService, usersService) => {
         })
     }
 
+    // get edit user profile
+    const editProfile = async (req, res) => {
+        res.render("pages/editprofile")
+    }
+
+    // update profile data
+    const updateProfile = async (req, res) => {
+        res.redirect("back")
+    }
+
     // make a post
     const makePost = async (req, res) => {
         const {fullname, id} = req.user
@@ -111,6 +121,8 @@ const User = (userService, usersService) => {
 
     return {
         profile,
+        editProfile,
+        updateProfile,
         makePost,
         showMessages,
         sendMessage,
