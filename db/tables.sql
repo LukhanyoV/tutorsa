@@ -52,6 +52,7 @@ CREATE TABLE messages (
     message_receiver INT NOT NULL,
     message_text TEXT NOT NULL,
     message_image TEXT,
+    message_read BOOLEAN DEFAULT 'f',
     message_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (message_sender) REFERENCES members(id),
     FOREIGN KEY (message_receiver) REFERENCES members(id)
