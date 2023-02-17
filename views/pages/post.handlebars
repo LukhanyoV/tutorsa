@@ -1,6 +1,6 @@
 {{#if post}}
 <div>
-  <h3> {{post.fullname}} </h3>
+  <a href="/profile/{{post.post_author}}"><h3> {{post.fullname}} </h3></a>
   <span> {{post.post_created}} </span>
   <p> {{post.post_text}} </p>
 </div>
@@ -17,7 +17,7 @@
 {{#if comments}}
 {{#each comments}}
 <div>
-  <h4>{{this.fullname}}</h4>
+  <a href="/profile/{{this.comment_author}}"><h4>{{this.fullname}}</h4></a>
   <span>{{this.comment_created}}</span>
   <p>{{this.comment_text}}</p>
 </div>

@@ -3,7 +3,7 @@
   <a href="/post/{{post_id}}">Go back to post</a>
 </div>
 <div>
-  <h3>{{comment.fullname}}</h3>
+   <a href="/profile/{{comment.comment_author}}"><h3>{{comment.fullname}}</h3></a>
   <span>{{comment.comment_created}}</span>
   <p>{{comment.comment_text}}</p>
 </div>
@@ -18,7 +18,7 @@
 {{#if replies}}
 {{#each replies}}
 <div>
-  <h4>{{fullname}}</h4>
+  <a href="/profile/{{reply_author}}"><h4>{{fullname}}</h4></a>
   <span>{{reply_created}}</span>
   <p>{{reply_text}}</p>
 </div>

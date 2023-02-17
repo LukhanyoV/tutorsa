@@ -1,5 +1,5 @@
 <h1>Message:</h1>
-<h2>{{friend}}({{account_type}})</h2>
+<h2>{{friend}} ({{account_type}})</h2>
 
 <form action="/message/{{user_id}}" method="post">
   <label for="message_text">Message</label>
@@ -11,7 +11,7 @@
 <div class="messages">
   {{#each messages}}
   <div class="message">
-    <h3>{{sender_name}}</h3>
+    <a href="/profile/{{sender_id}}"><h3>{{sender_name}}</h3></a>
     <p>{{message_text}}</p>
   </div>
   {{/each}}
