@@ -49,7 +49,12 @@ const User = (userService, usersService) => {
 
     // get rate tutor
     const rateTutor = async (req, res) => {
+        const {tutor_id} = req.params
+        const {account_type, fullname, id} = await usersService.findById(tutor_id)
         res.render("pages/ratetutor", {
+            id,
+            fullname,
+            isTutor: account_type === "tutor",
             badges: req.badges
         })
     }
