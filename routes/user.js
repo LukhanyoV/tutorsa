@@ -24,6 +24,7 @@ const User = (userService, usersService) => {
             posts,
             account_type,
             profile_id,
+            isTutor: account_type === "tutor",
             notMe
         })
     }
@@ -41,6 +42,16 @@ const User = (userService, usersService) => {
 
     // update profile data
     const updateProfile = async (req, res) => {
+        res.redirect("back")
+    }
+
+    // get rate tutor
+    const rateTutor = async (req, res) => {
+        res.render("pages/ratetutor")
+    }
+
+    // send tutor rating
+    const sendRating = async (req, res) => {
         res.redirect("back")
     }
 
@@ -129,6 +140,8 @@ const User = (userService, usersService) => {
         profile,
         editProfile,
         updateProfile,
+        rateTutor,
+        sendRating,
         makePost,
         showMessages,
         sendMessage,

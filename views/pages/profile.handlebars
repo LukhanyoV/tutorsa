@@ -1,9 +1,13 @@
 <h1>Profile</h1>
 <h2>Name: {{fullname}} </h2>
 <h2>Type: {{account_type}} </h2>
+{{#if isTutor}}
+<h2>Rating: 4.90/5 stars</h2>
+{{/if}}
 
 {{#if notMe}}
 <a href="/message/{{profile_id}}"><button>Message</button></a>
+<a href="/rate/{{profile_id}}">Rate</a>
 {{/if}}
 {{#unless notMe}}
 <a href="/profile/edit"><button>Edit profile</button></a>

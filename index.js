@@ -87,6 +87,9 @@ app.get("/messages", checkAuthenticated, user.pastMessages)
 app.get("/message/:user_id", checkAuthenticated, user.showMessages)
 app.post("/message/:user_id", checkAuthenticated, user.sendMessage)
 
+app.get("/rate/:tutor_id", checkAuthenticated, user.rateTutor)
+app.post("/rate", checkAuthenticated, user.sendRating)
+
 // export "app"
 module.exports = app
 
