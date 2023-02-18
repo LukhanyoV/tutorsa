@@ -39,6 +39,7 @@ app.use(passport.session())
 const usersService = require("./services/UsersService")(db)
 const userServive = require("./services/UserService")(db)
 const postService = require("./services/PostService")(db)
+const bookingService = require("./services/BookingServices")(db)
 
 // configure the routes and auth pages
 const users = require("./routes/users")(usersService)
@@ -51,6 +52,9 @@ const user = require("./routes/user")(userServive, usersService)
 
 // configure the post service
 const post = require("./routes/post")(userServive, postService)
+
+// configure booking service 
+const book = require("./routes/bookings")(bookingService)
 
 // badge count
 app.use(async (req, res, next) => {
@@ -99,6 +103,9 @@ app.post("/message/:user_id", checkAuthenticated, user.sendMessage)
 
 app.get("/rate/:tutor_id", checkAuthenticated, user.rateTutor)
 app.post("/rate", checkAuthenticated, user.sendRating)
+
+app.get("/book/:tutor_id", checkAuthenticated, book.bookTutor)
+app.get("/bookings", checkAuthenticated, book.checkBookings)
 
 // export "app"
 module.exports = app
