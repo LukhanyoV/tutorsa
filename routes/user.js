@@ -5,7 +5,7 @@ const User = (userService, usersService) => {
     const profile = async (req, res) => {
         let {fullname, id, account_type} = req.user
         let {profile_id} = req.params
-        let posts = await userService.getMyPosts(profile_id || id)
+        let posts = await userService.getMyPostsPerPage(profile_id || id, 10, req.query.page || 1)
         let notMe = !profile_id ? false : profile_id != id
         if(profile_id){
             let user = await usersService.findById(profile_id)

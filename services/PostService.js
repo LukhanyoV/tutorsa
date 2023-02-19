@@ -3,6 +3,12 @@ const PostService = (db) => {
     const getAllPosts = async () => {
         return await db.manyOrNone("SELECT * FROM posts INNER JOIN members ON members.id = posts.post_author ORDER BY post_created DESC")
     }
+
+    // get posts using pagination
+    const getPostsPerPage = async (numberOfPosts, pageNumber) => {
+        return await db.manyOrNone("SELECT * FROM posts INNER JOIN members ON members.id = posts.post_author ORDER BY post_created DESC LIMIT $1 OFFSET $2", [numberOfPosts, (pageNumber-1)*numberOfPosts])
+    }
+
     // get post by the id
     const getPostById = async (post_id) => {
         return await db.oneOrNone("SELECT * FROM posts INNER JOIN members ON members.id = posts.post_author WHERE post_id = $1", [post_id])
@@ -47,6 +53,7 @@ const PostService = (db) => {
 
     return {
         getAllPosts,
+        getPostsPerPage,
         getPostById,
         getCommentsForPost,
         makeComment,

@@ -10,6 +10,11 @@ const UserService = (db) => {
         return await db.manyOrNone("SELECT * FROM posts INNER JOIN members ON members.id = posts.post_author WHERE post_author = $1 ORDER BY post_created DESC", [post_author])
     }
 
+    // get my posts using pagination
+    const getMyPostsPerPage = async (post_author, numberOfPosts, pageNumber) => {
+        return await db.manyOrNone("SELECT * FROM posts INNER JOIN members ON members.id = posts.post_author WHERE post_author = $1 ORDER BY post_created DESC LIMIT $2 OFFSET $3", [post_author, numberOfPosts, (pageNumber-1)*numberOfPosts])
+    }
+
     // MESSAGES
     // get messages
     const getMessages = async (sender, receiver) => {
@@ -43,6 +48,7 @@ const UserService = (db) => {
     return {
         makePost,
         getMyPosts,
+        getMyPostsPerPage,
         getMessages,
         sendMessage,
         getPastMessages,
