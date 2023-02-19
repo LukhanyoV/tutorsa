@@ -13,10 +13,18 @@ const Pages = (postService) => {
         } else {
             posts = []
         }
+        // pagination
+        const currentPage = req.query.page || 1
+        const prevPage = currentPage > 1 && +currentPage-1
+        const nextPage = !(posts.length < limit) && +currentPage+1 // better than checking the next page
         res.render("pages/home", {
             fullname,
             posts,
-            badges: req.badges
+            badges: req.badges,
+
+            currentPage,
+            prevPage,
+            nextPage
         })
     }
 

@@ -32,6 +32,24 @@
   </div>
   {{/each}}
 </div>
+<div>
+  <hr>
+  <ul>
+    {{#if prevPage}}
+    <li>
+      <a href="?page={{prevPage}}">&lt; {{prevPage}}</a>
+    </li>
+    {{/if}}
+    <li>
+      <a href="javascript:;">{{currentPage}}</a>
+    </li>
+    {{#if nextPage}}
+    <li>
+      <a href="?page={{nextPage}}">{{nextPage}} &gt;</a>
+    </li>
+    {{/if}}
+  </ul>
+</div>
 {{/if}}
 {{#unless posts}}
 <div>

@@ -5,7 +5,8 @@ const User = (userService, usersService) => {
     const profile = async (req, res) => {
         let {fullname, id, account_type} = req.user
         let {profile_id} = req.params
-        let posts = await userService.getMyPostsPerPage(profile_id || id, 10, req.query.page || 1)
+        let limit = 10
+        let posts = await userService.getMyPostsPerPage(profile_id || id, req.query.limit || limit, req.query.page || 1)
         let notMe = !profile_id ? false : profile_id != id
         if(profile_id){
             let user = await usersService.findById(profile_id)
@@ -19,6 +20,10 @@ const User = (userService, usersService) => {
         } else {
             posts = []
         }
+        // pagination
+        const currentPage = req.query.page || 1
+        const prevPage = currentPage > 1 && +currentPage-1
+        const nextPage = !(posts.length < limit) && +currentPage+1 // better than checking the next page
         res.render("pages/profile", {
             fullname,
             posts,
@@ -26,7 +31,11 @@ const User = (userService, usersService) => {
             profile_id,
             isTutor: account_type === "tutor",
             notMe,
-            badges: req.badges
+            badges: req.badges,
+
+            currentPage,
+            prevPage,
+            nextPage
         })
     }
 
