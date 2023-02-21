@@ -58,6 +58,19 @@ CREATE TABLE messages (
     FOREIGN KEY (message_receiver) REFERENCES members(id)
 );
 
+CREATE TABLE bookings (
+    
+);
+
+CREATE TABLE ratings (
+    rating_id SERIAL PRIMARY KEY,
+    rating_tutor INT NOT NULL,
+    rating_student INT NOT NULL,
+    rating_given INT NOT NULL,
+    rating_feedback TEXT NOT NULL,
+    FOREIGN KEY (rating_tutor) REFERENCES members(id),
+    FOREIGN KEY (rating_student) REFERENCES members(id)
+);
 
 -- SESSION TABLE
 CREATE TABLE "session" (
