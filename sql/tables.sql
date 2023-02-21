@@ -58,9 +58,9 @@ CREATE TABLE messages (
     FOREIGN KEY (message_receiver) REFERENCES members(id)
 );
 
-CREATE TABLE bookings (
+-- CREATE TABLE bookings (
     
-);
+-- );
 
 CREATE TABLE ratings (
     rating_id SERIAL PRIMARY KEY,
