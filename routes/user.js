@@ -1,10 +1,26 @@
 const moment = require("moment")
+const calcAverageRating = (ratings) => {
+    console.log(ratings)
+    let totalWeight = 0
+    let totalReviews = 0
 
-const User = (userService, usersService) => {
+    ratings.forEach((rating) => {
+        totalWeight += rating.weight * +rating.count
+        totalReviews += +rating.count
+    })
+
+    const averageRating = totalWeight / totalReviews
+
+    return averageRating ? averageRating.toFixed(2) : "No "
+}
+
+const User = (userService, usersService, bookingService) => {
     // get user profile
     const profile = async (req, res) => {
         let {fullname, id, account_type} = req.user
         let {profile_id} = req.params
+        let ratings
+        ratings = await bookingService.getTutorRating(profile_id || id)
         let limit = 10
         let posts = await userService.getMyPostsPerPage(profile_id || id, req.query.limit || limit, req.query.page || 1)
         let notMe = !profile_id ? false : profile_id != id
@@ -30,6 +46,7 @@ const User = (userService, usersService) => {
             account_type,
             profile_id,
             isTutor: account_type === "tutor",
+            rating: ratings ? calcAverageRating(ratings):null,
             notMe,
             badges: req.badges,
 
@@ -70,7 +87,16 @@ const User = (userService, usersService) => {
 
     // send tutor rating
     const sendRating = async (req, res) => {
-        res.redirect("back")
+        const {tutor, rating, feedback} = req.body
+        const {id, fullname} = req.user
+        try {
+            await bookingService.rateTutor(tutor, id, rating, feedback)
+        } catch (error) {
+            req.flash("error", "Oops something went wrong")
+            console.log(`${id}: ${fullname}`, "=>", error.stack)
+        } finally {
+            res.redirect("/profile/"+tutor)
+        }
     }
 
     // make a post

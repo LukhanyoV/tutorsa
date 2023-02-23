@@ -48,7 +48,7 @@ require("./services/PassportConfig")(passport, usersService)
 const { checkAuthenticated, checkNotAuthenticated } = require("./auth/UserAuth")()
 
 // comfigure user service (for individual user actions)
-const user = require("./routes/user")(userServive, usersService)
+const user = require("./routes/user")(userServive, usersService, bookingService)
 
 // configure the post service
 const post = require("./routes/post")(userServive, postService)
