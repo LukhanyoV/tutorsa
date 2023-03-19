@@ -58,9 +58,41 @@ CREATE TABLE messages (
     FOREIGN KEY (message_receiver) REFERENCES members(id)
 );
 
--- CREATE TABLE bookings (
-    
--- );
+CREATE TABLE grades (
+    grade_id SERIAL PRIMARY KEY,
+    grade_name TEXT NOT NULL
+);
+
+CREATE TABLE subjects (
+    subject_id SERIAL PRIMARY KEY,
+    subject_name TEXT NOT NULL
+);
+
+CREATE TABLE tutor_subjects (
+    ts_id SERIAL PRIMARY KEY,
+    ts_tutor INT NOT NULL,
+    ts_grade INT NOT NULL,
+    ts_subject INT NOT NULL,
+    FOREIGN KEY (ts_tutor) REFERENCES members(id),
+    FOREIGN KEY (ts_grade) REFERENCES grades(grade_id),
+    FOREIGN KEY (ts_subject) REFERENCES subjects(subject_id)
+);
+
+CREATE TABLE bookings (
+    booking_id SERIAL PRIMARY KEY,
+    booking_tutor INT NOT NULL,
+    booking_student INT NOT NULL,
+    booking_grade INT NOT NULL,
+    booking_subject INT NOT NULL,
+    booking_date TIMESTAMP NOT NULL,
+    booking_status TEXT DEFAULT 'pending',
+    booking_feedback TEXT,
+    booking_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (booking_tutor) REFERENCES members(id),
+    FOREIGN KEY (booking_student) REFERENCES members(id),
+    FOREIGN KEY (booking_grade) REFERENCES grades(grade_id),
+    FOREIGN KEY (booking_subject) REFERENCES subjects(subject_id)
+);
 
 CREATE TABLE ratings (
     rating_id SERIAL PRIMARY KEY,
