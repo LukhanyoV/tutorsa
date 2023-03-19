@@ -107,6 +107,10 @@ app.post("/rate", checkAuthenticated, user.sendRating)
 app.get("/book/:tutor_id", checkAuthenticated, book.bookTutor)
 app.get("/bookings", checkAuthenticated, book.checkBookings)
 
+app.get("/subjects/add", checkAuthenticated, user.getAddSubjects)
+app.post("/subjects/add", checkAuthenticated, user.addSubjects)
+app.post("/subjects/remove", checkAuthenticated, user.removeSubject)
+
 // export "app"
 module.exports = app
 
