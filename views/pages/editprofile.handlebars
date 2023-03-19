@@ -1,5 +1,6 @@
 <h1>Edit profile</h1>
 
+<h2>Profile Details</h2>
 <form action="/profile/edit" method="post">
     <div>
         <label for="name">Full name</label>
@@ -17,3 +18,40 @@
         <button type="submit">Update</button>
     </div>
 </form>
+
+{{#if isTutor}}
+<h2>Tutor Subjects</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Grade</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#unless tutorSubjects}}
+        <tr>
+            <td></td>
+            <td>
+                No subjects added yet
+            </td>
+            <td></td>
+        </tr>
+        {{/unless}}
+        {{#each tutorSubjects}}
+        <tr>
+            <td>{{subject}}</td>
+            <td>{{grade}}</td>
+            <td>
+                <form action="/subjects/remove" method="post">
+                    <input type="hidden" name="key" value="{{id}}">
+                    <button type="submit">x</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<a href="/subjects/add"><button>add new subject(s)</button></a>
+{{/if}}

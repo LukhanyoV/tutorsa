@@ -1,0 +1,44 @@
+
+{{#if isTutor}}
+<hr>
+<h1>Tutor Subjects</h1>
+{{#unless num}}
+<form>
+    <div>
+        <label for="num">Number of subjects:</label>
+        <input type="number" name="num" id="num" step="1" value="{{num}}">
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+{{/unless}}
+
+{{#if num}}
+<form method="post" action="/subjects/add">
+    <input type="hidden" name="num" value="{{num}}">
+    <h2>Choose subject and grade(s)</h2>
+    {{#each fields}}
+    <div>
+        <select name="subject{{this}}">
+        {{#each ../subjects}}
+            <option value="{{subject_id}}">{{subject_name}}</option>
+        {{/each}}
+        </select>
+        <select name="grades{{this}}" multiple>
+        {{#each ../grades}}
+            <option value="{{grade_id}}">{{grade_name}}</option>
+        {{/each}}
+        </select>
+    </div>
+    {{/each}}
+    <div>
+        <button type="submit">add</button>
+    </div>
+</form>
+{{/if}}
+{{/if}}
+{{#unless isTutor}}
+<a href="/home">Are you lost? Go back home</a>
+<!--<h1>You are not a tutor, how did you find this page</h1>-->
+{{/unless}}
