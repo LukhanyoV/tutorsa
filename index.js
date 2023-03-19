@@ -104,6 +104,7 @@ app.post("/message/:user_id", checkAuthenticated, user.sendMessage)
 app.get("/rate/:tutor_id", checkAuthenticated, user.rateTutor)
 app.post("/rate", checkAuthenticated, user.sendRating)
 
+app.get("/book/search", checkAuthenticated, book.searchForTutor)
 app.get("/book/:tutor_id", checkAuthenticated, book.bookTutor)
 app.get("/bookings", checkAuthenticated, book.checkBookings)
 

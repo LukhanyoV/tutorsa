@@ -45,6 +45,30 @@ const BookingService = (db) => {
         await db.none("DELETE FROM tutor_subjects WHERE ts_id = $1 AND ts_tutor = $2", [key, id])
     }
 
+    // search for tutor by subject and / or grade
+    const searchForTutor = async (subject_id, grade_id) => {
+        const sql = `SELECT m.id, m.fullname, s.subject_name, g.grade_name  
+        FROM tutor_subjects AS ts 
+        JOIN members AS m 
+        ON m.id = ts.ts_tutor 
+        JOIN subjects AS s 
+        ON s.subject_id = ts.ts_subject 
+        JOIN grades AS g 
+        ON g.grade_id = ts.ts_grade `
+
+        if(subject_id && grade_id){
+            let query = sql+`WHERE ts.ts_subject = $1 AND ts.ts_grade = $2`
+            return await db.any(query, [subject_id, grade_id])
+        } else if(subject_id){
+            let query = sql+`WHERE ts.ts_subject = $1`
+            return await db.any(query, [subject_id])
+        } else if(grade_id){
+            let query = sql+`WHERE ts.ts_grade = $1`
+            return await db.any(query, [grade_id])
+        }
+        return []
+    }
+
     return {
         getTutorRating,
         rateTutor,
@@ -52,7 +76,8 @@ const BookingService = (db) => {
         getGrades,
         addTutorSubject,
         getTutorSubjects,
-        removeTutorSubject
+        removeTutorSubject,
+        searchForTutor
     }
 }
 

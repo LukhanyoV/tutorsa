@@ -1,0 +1,37 @@
+{{#if isStudent}}
+<h2>Search for tutor</h2>
+<form method="get">
+    <div>
+        <select name="subject">
+            <option value="">select subject</option>
+            {{#each subjects}}
+            <option value="{{subject_id}}">{{subject_name}}</option>
+            {{/each}}
+        </select>
+        <span>and / or</span>
+        <select name="grade">
+            <option value="">select grade</option>
+            {{#each grades}}
+            <option value="{{grade_id}}">{{grade_name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <button type="submit">search</button>
+    </div>
+</form>
+{{/if}}
+
+{{#if searchResults}}
+<ul>
+    {{#each searchResults}}
+    <li>
+        <div>
+            <h3>{{fullname}}</h3>
+            <p>{{subject_name}} - {{grade_name}}</p>
+            <a href="/book/{{id}}"><button>book</button></a>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
