@@ -37,7 +37,7 @@ app.use(passport.session())
 
 // configure services
 const usersService = require("./services/UsersService")(db)
-const userServive = require("./services/UserService")(db)
+const userService = require("./services/UserService")(db)
 const postService = require("./services/PostService")(db)
 const bookingService = require("./services/BookingServices")(db)
 
@@ -48,19 +48,19 @@ require("./services/PassportConfig")(passport, usersService)
 const { checkAuthenticated, checkNotAuthenticated } = require("./auth/UserAuth")()
 
 // comfigure user service (for individual user actions)
-const user = require("./routes/user")(userServive, usersService, bookingService)
+const user = require("./routes/user")(userService, usersService, bookingService)
 
 // configure the post service
-const post = require("./routes/post")(userServive, postService)
+const post = require("./routes/post")(userService, postService)
 
 // configure booking service 
-const book = require("./routes/bookings")(bookingService)
+const book = require("./routes/bookings")(bookingService, usersService)
 
 // badge count
 app.use(async (req, res, next) => {
     if(req.user){
         const {id} = req.user
-        const {count} = await userServive.unreadMessageBadge(id)
+        const {count} = await userService.unreadMessageBadge(id)
         req.badges = {...req.badges, unreadMsgs: count}
     }
     next()
@@ -105,6 +105,8 @@ app.get("/rate/:tutor_id", checkAuthenticated, user.rateTutor)
 app.post("/rate", checkAuthenticated, user.sendRating)
 
 app.get("/book/search", checkAuthenticated, book.searchForTutor)
+app.post("/book/create", checkAuthenticated, book.createBooking)
+app.post("/book/update", checkAuthenticated, book.updateBooking)
 app.get("/book/:tutor_id", checkAuthenticated, book.bookTutor)
 app.get("/bookings", checkAuthenticated, book.checkBookings)
 

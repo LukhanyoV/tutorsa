@@ -56,6 +56,8 @@ const BookingService = (db) => {
         JOIN grades AS g 
         ON g.grade_id = ts.ts_grade `
 
+        // new idea instead of if ladder
+        // subject and grade OR subject OR grade
         if(subject_id && grade_id){
             let query = sql+`WHERE ts.ts_subject = $1 AND ts.ts_grade = $2`
             return await db.any(query, [subject_id, grade_id])
@@ -69,6 +71,43 @@ const BookingService = (db) => {
         return []
     }
 
+    // create booking
+    const createBooking = async (id, item, date) => {
+        await db.none("INSERT INTO bookings (booking_student, booking_item, booking_date) VALUES ($1, $2, $3)", [id, item, date])
+    }
+
+    // get bookings
+    const getUserBookings = async (user) => {
+        return await db.any(`
+            SELECT b.booking_id AS id, 
+            m.fullname AS student, m2.fullname AS tutor, 
+            s.subject_name AS subject, g.grade_name AS grade, 
+            b.booking_date AS date, b.booking_status AS status, 
+            b.booking_feedback AS feedback
+            FROM bookings AS b
+            JOIN members AS m 
+            ON b.booking_student = m.id 
+            JOIN tutor_subjects AS ts 
+            ON b.booking_item = ts.ts_id 
+            JOIN subjects AS s 
+            ON ts.ts_subject = s.subject_id 
+            JOIN grades AS g 
+            ON ts.ts_grade = g.grade_id 
+            JOIN members AS m2 
+            ON ts.ts_tutor = m2.id 
+            WHERE ts.ts_tutor = $1 OR b.booking_student = $1 
+            ORDER BY booking_id DESC
+        `, [user])
+    }
+
+    // tutor accept booking
+    const updateBookingStatus = async (id, status, feedback, user) => {
+        // make sure user updates own entry
+        // if(await db.oneOrNone("SELECT ts.ts_tutor FROM tutor_subjects AS ts JOIN bookings AS b ON ts.ts_id = b.booking_item WHERE ts.ts_id = $1 AND (ts.ts_tutor = $2 OR b.booking_student = $2)", [id, user])){
+            await db.none("UPDATE bookings SET booking_status = $1, booking_feedback = $2 WHERE bookings.booking_id = $3", [status, feedback, id])
+        // }
+    }
+
     return {
         getTutorRating,
         rateTutor,
@@ -77,7 +116,10 @@ const BookingService = (db) => {
         addTutorSubject,
         getTutorSubjects,
         removeTutorSubject,
-        searchForTutor
+        searchForTutor,
+        createBooking,
+        getUserBookings,
+        updateBookingStatus
     }
 }
 

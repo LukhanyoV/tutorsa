@@ -2,6 +2,67 @@
 
 <a href="/book/search">search for tutor</a>
 
+{{#if bookings}}
+{{#if isStudent}}
+<ul>
+    {{#each bookings}}
+    <li>
+        <div>
+            <p>Tutor: {{tutor}}</p>
+            <p>Subject: {{subject}}</p>
+            <p>Grade: {{grade}}</p>
+            <p>Date: {{formatDate date}}</p>
+            <p>Status: {{status}}</p>
+            {{#if feedback}}<p>Feedback: {{feedback}}</p>{{/if}}
+        </div>
+        {{#if updates}}
+        <div>
+            <form action="/book/update" method="post">
+                <input type="hidden" name="key" value="{{id}}">
+                <select name="update">
+                    {{#each updates}}
+                    <option value="{{key}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <button>update</button>
+            </form>
+        </div>
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
+{{#if isTutor}}
+<ul>
+    {{#each bookings}}
+    <li>
+        <div>
+            <p>Student: {{student}}</p>
+            <p>Subject: {{subject}}</p>
+            <p>Grade: {{grade}}</p>
+            <p>Date: {{formatDate date}}</p>
+            <p>Status: {{status}}</p>
+            {{#if feedback}}<p>Feedback: {{feedback}}</p>{{/if}}
+        </div>
+        {{#if updates}}
+        <div>
+            <form action="/book/update" method="post">
+                <input type="hidden" name="key" value="{{id}}">
+                <select name="update">
+                    {{#each updates}}
+                    <option value="{{key}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <button>update</button>
+            </form>
+        </div>
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
+{{/if}}
+
 {{!-- <h1>accept / reject bookings</h1>
 <p>bookings can expire?</p>
 <p>show student / tutor booking table</p> --}}

@@ -1,4 +1,23 @@
 <h1>create booking</h1>
-<p>choose day, grade, subject</p>
+<h3>{{fullname}}</h3>
+<form action="/book/create" method="post">
+    <div>
+        <label for="item">Subject and Grade:</label>
+        <select name="item" id="item">
+            <option value="" selected disabled>select subject and grade</option>
+            {{#each tutorSubjects}}
+            <option value="{{id}}">{{subject}} - {{grade}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" min="{{minDate}}">
+    </div>
+    <div>
+        <button type="submit">create</button>
+    </div>
+</form>
+{{!-- <p>choose day, grade, subject</p>
 <p>this should be obvious but you cant book students</p>
-<p>should tutors also make bookings?</p>
+<p>should tutors also make bookings?</p> --}}
