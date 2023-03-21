@@ -20,7 +20,6 @@
         <button type="submit">search</button>
     </div>
 </form>
-{{/if}}
 
 {{#if searchResults}}
 <ul>
@@ -34,4 +33,9 @@
     </li>
     {{/each}}
 </ul>
+{{/if}}
+
+{{#unless searchResults}}
+<p>No resuts found</p>
+{{/unless}}
 {{/if}}

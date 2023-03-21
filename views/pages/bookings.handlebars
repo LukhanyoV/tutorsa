@@ -1,6 +1,11 @@
 <h1>Bookings</h1>
 
-<a href="/book/search">search for tutor</a>
+{{#if isStudent}}
+<em>Hello there are you looking for a tutor, <a href="/book/search">search for tutor</a></em>
+{{/if}}
+{{#if isTutor}}
+<em>As a tutor to be booked you need to add the subjects that you are tutoring for, <a href="/profile/edit">add or remove subjects</a></em>
+{{/if}}
 
 {{#if bookings}}
 {{#if isStudent}}
@@ -62,6 +67,10 @@
 </ul>
 {{/if}}
 {{/if}}
+
+{{#unless bookings}}
+<h2>No bookings have been made yet</h2>
+{{/unless}}
 
 {{!-- <h1>accept / reject bookings</h1>
 <p>bookings can expire?</p>

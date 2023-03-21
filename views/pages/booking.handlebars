@@ -1,5 +1,6 @@
 <h1>create booking</h1>
 <h3>{{fullname}}</h3>
+{{#if tutorSubjects}}
 <form action="/book/create" method="post">
     <div>
         <label for="item">Subject and Grade:</label>
@@ -18,6 +19,10 @@
         <button type="submit">create</button>
     </div>
 </form>
+{{/if}}
+{{#unless tutorSubjects}}
+<p>You cannot book this person</p>
+{{/unless}}
 {{!-- <p>choose day, grade, subject</p>
 <p>this should be obvious but you cant book students</p>
 <p>should tutors also make bookings?</p> --}}
