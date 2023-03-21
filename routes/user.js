@@ -101,7 +101,7 @@ const User = (userService, usersService, bookingService) => {
             // let grades = Array.isArray(req.body[`grades${i}`]) ? req.body[`grades${i}`] : [req.body[`grades${i}`]]
             let grades = [req['body'][`grades${i}`]]['flat']()
             for(let j = 0; j < grades.length; j++){
-                console.log('subject id', req.body[`subject${i}`], '==>', 'grade id', grades[j])
+                // console.log('subject id', req.body[`subject${i}`], '==>', 'grade id', grades[j])
                 await bookingService.addTutorSubject(+id, +req.body[`subject${i}`], +grades[j])
             }
         }

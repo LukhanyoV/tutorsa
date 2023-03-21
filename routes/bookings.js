@@ -88,7 +88,7 @@ const Bookings = (bookingService, usersService) => {
                 await bookingService.createBooking(id, +item, date)
             }
         } catch (error) {
-            console.log(error.message)
+            console.log(error.stack)
         } finally {
             res.redirect("/bookings")
         }
@@ -97,9 +97,7 @@ const Bookings = (bookingService, usersService) => {
     const updateBooking = async (req, res) => {
         const {id, account_type} = req.user
         const {key, update, feedback} = req.body
-        console.log(req.body)
         if(account_type === "tutor"){
-            console.log("first", update)
             if(update == 1){
                 await bookingService.updateBookingStatus(+key, "accepted", feedback, id)
             } else if(update == 2){
