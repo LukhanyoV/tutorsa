@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt")
 const Users = (usersService) => {
     const getLogin = async (req, res) => {
         res.render("auth/login", {
-            layout: "dashboard",
+            layout: "auth",
         })
     }
 
@@ -17,7 +17,7 @@ const Users = (usersService) => {
 
     const getRegister = async (req, res) => {
         res.render("auth/register", {
-            layout: "dashboard",
+            layout: "auth",
         })
     }
 

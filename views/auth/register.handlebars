@@ -1,4 +1,64 @@
-<h1>Register</h1>
+ <!-- contact section -->
+
+  <section class="contact_section ">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="d-flex justify-content-center d-md-block">
+            <h2>
+              Sign Up
+            </h2>
+          </div>
+          <form action="/register" method="post">
+            {{#if messages.error}}
+                <p>{{messages.error}}</p>
+            {{/if}}
+
+            {{#if messages.success}}
+                <p>{{messages.success}}</p>
+            {{/if}}
+            <div class="contact_form-container">
+              <div>
+                <div>
+                  <input type="text" name="fullname" placeholder="Full Name">
+                </div>
+                <div>
+                  <input type="email" name="email" placeholder="Email">
+                </div>
+                <div>
+                  <input type="password" name="password" placeholder="Password">
+                </div>
+                <div>
+                    <span>Account type</span>
+                    <div class="d-flex align-items-center">
+                        <input type="radio" name="account_type" id="tutor" value="tutor" required> <span>Tutor</span>
+                        <input type="radio" name="account_type" id="student" value="student"> <span>Student</span>
+                    </div>
+                </div>
+                <div class="mt-5">
+                  <button type="submit">
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="contact_img-box">
+            <img src="images/students.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+  
+{{!-- <h1>Register</h1>
 
 {{#if messages.error}}
     <p>{{messages.error}}</p>
@@ -36,4 +96,4 @@
         <button type="submit">Register</button>
     </div>
 </form>
-<a href="/login">Already have an account?</a>
+<a href="/login">Already have an account?</a> --}}

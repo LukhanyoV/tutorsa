@@ -1,4 +1,55 @@
-<h1>Login</h1>
+ <!-- contact section -->
+
+  <section class="contact_section ">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="d-flex justify-content-center d-md-block">
+            <h2>
+              Sign In
+            </h2>
+          </div>
+          <form action="/login" method="post">
+            {{#if messages.error}}
+                <p>{{messages.error}}</p>
+            {{/if}}
+
+            {{#if messages.success}}
+                <p>{{messages.success}}</p>
+            {{/if}}
+            <div class="contact_form-container">
+              <div>
+                <div>
+                  <input type="email" name="email" placeholder="Email">
+                </div>
+                <div>
+                  <input type="password" name="password" placeholder="Password">
+                </div>
+                <div class="mt-5">
+                  <button type="submit">
+                    Sign In
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="contact_img-box">
+            <img src="images/students.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+  
+
+{{!-- <h1>Login</h1>
 
 {{#if messages.error}}
     <p>{{messages.error}}</p>
@@ -23,4 +74,4 @@
     </div>
 </form>
 
-<a href="/register">Don't have an account?</a>
+<a href="/register">Don't have an account?</a> --}}
