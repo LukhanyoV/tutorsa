@@ -15,6 +15,7 @@ app.engine("handlebars", exphbs.engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 
 // setup middleware
+app.use(express.static("public"))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use(cors())
