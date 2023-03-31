@@ -13,9 +13,9 @@
   <meta name="author" content="" />
   <title>TutorSA</title>
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
   <!-- progress barstle -->
-  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+  <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
   <!-- font wesome stylesheet -->
@@ -23,8 +23,8 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+  <link href="/css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
 </head>
 <body class="sub_page">
   <div class="top_container ">
@@ -60,6 +60,12 @@
 
                 <li class="nav-item ">
                   <a class="nav-link" href="/profile"> Profile </a>
+                </li>
+
+                <li class="nav-item">
+                  <form action="/logout" method="post">
+                    <button type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                  </form>
                 </li>
               </ul>
 
@@ -142,17 +148,17 @@
 
         <div class="social-box">
           <a href="">
-            <img src="images/fb.png" alt="">
+            <img src="/images/fb.png" alt="">
           </a>
 
           <a href="">
-            <img src="images/twitter.png" alt="">
+            <img src="/images/twitter.png" alt="">
           </a>
           <a href="">
-            <img src="images/linkedin.png" alt="">
+            <img src="/images/linkedin.png" alt="">
           </a>
           <a href="">
-            <img src="images/instagram.png" alt="">
+            <img src="/images/instagram.png" alt="">
           </a>
         </div>
       </div>
@@ -162,13 +168,14 @@
   <!-- footer section -->
   <section class="container-fluid footer_section">
     <p>
-      Copyright &copy; 2019 All Rights Reserved By
-      <a href="https://html.design/">Free Html Templates</a>
+      Copyright &copy; TutorSA
+      {{!-- Copyright &copy; 2019 All Rights Reserved By --}}
+      {{!-- <a href="https://html.design/">Free Html Templates</a> --}}
     </p>
   </section>
   <!-- footer section -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 </body>
 </html>
 {{!-- <!DOCTYPE html>
