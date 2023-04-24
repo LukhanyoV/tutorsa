@@ -1,22 +1,44 @@
-<h1>Message:</h1>
-<h2>{{friend}} ({{account_type}})</h2>
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
 
-<form action="/message/{{user_id}}" method="post">
-  <label for="message_text">Message</label>
-  <textarea name="message_text" id="message_text" cols="20" rows="4" required></textarea>
-  <button type="submit">Message</button>
-</form>
+        <div class="card">
+          <div class="rounded-top d-flex flex-column p-2" style="background-color: whitesmoke;">
 
-{{#if msg}}
-<div class="messages">
-  {{#each messages}}
-  <div class="message">
-    <a href="/profile/{{sender_id}}"><h3>{{sender_name}}</h3></a>
-    <p>{{message_text}}</p> - <span>{{message_created}}</span>
+            <h2>Message:</h1>
+              <h3>{{friend}} ({{account_type}})</h3>
+
+              <form action="/message/{{user_id}}" method="post">
+                <div class="form-group">
+
+                  <label for="message_text">Message</label><br>
+                  <textarea name="message_text" id="message_text" cols="20" rows="4" required></textarea>
+                </div>
+
+                <button class="btn btn-primary btn-block" type="submit">Message</button>
+              </form>
+          </div>
+          <div class="card-body">
+
+            {{#if msg}}
+            <div class="messages">
+              {{#each messages}}
+              <div class="message">
+                <a href="/profile/{{sender_id}}">
+                  <h3>{{sender_name}}</h3>
+                </a>
+                <p>{{message_text}}</p> - <span>{{message_created}}</span>
+              </div>
+              {{/each}}
+            </div>
+            {{/if}}
+            {{#unless msg}}
+            <h1>No messages</h1>
+            {{/unless}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  {{/each}}
-</div>
-{{/if}}
-{{#unless msg}}
-<h1>No messages</h1>
-{{/unless}}
+</section>

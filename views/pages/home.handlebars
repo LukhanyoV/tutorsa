@@ -1,41 +1,41 @@
-<h1>Welcome page</h1>
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
 
-<p>Hello {{ fullname }} </p>
+        <div class="card">
+          <div class="rounded-top d-flex flex-row p-2" style="background-color: whitesmoke; height:200px;">
+            <div class="ms-4 mt-5 mr-2 d-flex flex-column">
+              <h1>Dashboard</h1>
+              <p>Hello {{ fullname }} </p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="list-group-fluid">
+              {{!-- {{#if badges.unreadMsgs}}
+              <a href="/messages" class="list-group-item list-group-item-action">
+              View your messages ({{badges.unreadMsgs}})
+              </a>
+              {{/if}} --}}
+              <a href="/bookings" class="list-group-item list-group-item-action">
+              {{#if isStudent}}
+              Create or
+              {{/if}} 
+              View your bookings
+              </a>
+              <a href="/profile" class="list-group-item list-group-item-action">
+              Visit your profile
+              </a>
+              {{#if isTutor}}
+              <a href="/profile/edit#subjects" class="list-group-item list-group-item-action">
+              Add new subjects that you are going to tutor for
+              </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
 
-{{!-- {{#if posts}}
-<div>
-  {{#each posts}}
-  <div>
-    <a href="/profile/{{post_author}}"><h3> {{fullname}} </h3></a>
-    <span> {{post_created}} </span>
-    <p> {{post_text}} </p>
+      </div>
+    </div>
   </div>
-  <div>
-    <a href="/post/{{post_id}}">View post</a>
-  </div>
-  {{/each}}
-</div>
-<div>
-  <hr>
-  <ul>
-    {{#if prevPage}}
-    <li>
-      <a href="?page={{prevPage}}">&lt; {{prevPage}}</a>
-    </li>
-    {{/if}}
-    <li>
-      <a href="javascript:;">{{currentPage}}</a>
-    </li>
-    {{#if nextPage}}
-    <li>
-      <a href="?page={{nextPage}}">{{nextPage}} &gt;</a>
-    </li>
-    {{/if}}
-  </ul>
-</div>
-{{/if}}
-{{#unless posts}}
-<div>
-  <h2>The are no posts available.</h2>
-</div>
-{{/unless}} --}}
+</section>

@@ -1,41 +1,55 @@
-{{#if isStudent}}
-<h2>Search for tutor</h2>
-<form method="get">
-    <div>
-        <select name="subject">
-            <option value="">select subject</option>
-            {{#each subjects}}
-            <option value="{{subject_id}}">{{subject_name}}</option>
-            {{/each}}
-        </select>
-        <span>and / or</span>
-        <select name="grade">
-            <option value="">select grade</option>
-            {{#each grades}}
-            <option value="{{grade_id}}">{{grade_name}}</option>
-            {{/each}}
-        </select>
-    </div>
-    <div>
-        <button type="submit">search</button>
-    </div>
-</form>
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card">
 
-{{#if searchResults}}
-<ul>
-    {{#each searchResults}}
-    <li>
-        <div>
-            <h3>{{fullname}}</h3>
-            <p>{{subject_name}} - {{grade_name}}</p>
-            <a href="/book/{{id}}"><button>book</button></a>
+                    <div class="rounded-top d-flex flex-column p-2" style="background-color: whitesmoke; ">
+                        {{#if isStudent}}
+                        <h2>Search for tutor</h2>
+                        <form method="get">
+                            <div class="form-group">
+                                <select class="form-control" name="subject">
+                                    <option value="">select subject</option>
+                                    {{#each subjects}}
+                                    <option value="{{subject_id}}">{{subject_name}}</option>
+                                    {{/each}}
+                                </select>
+                                <span>and / or</span>
+                                <select class="form-control" name="grade">
+                                    <option value="">select grade</option>
+                                    {{#each grades}}
+                                    <option value="{{grade_id}}">{{grade_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block" type="submit">search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        {{#if searchResults}}
+                        <ul>
+                            {{#each searchResults}}
+                            <div class="card p-2 mb-3">
+                                <div>
+                                    <h3>{{fullname}}</h3>
+                                    <p>{{subject_name}} - {{grade_name}}</p>
+                                    <a href="/book/{{id}}"><button class="btn btn-primary">book</button></a>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </ul>
+                        {{/if}}
+
+                        {{#unless searchResults}}
+                        <p>No resuts found</p>
+                        {{/unless}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
         </div>
-    </li>
-    {{/each}}
-</ul>
-{{/if}}
-
-{{#unless searchResults}}
-<p>No resuts found</p>
-{{/unless}}
-{{/if}}
+    </div>
+</section>

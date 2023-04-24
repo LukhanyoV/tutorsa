@@ -17,20 +17,14 @@
                             {{/if}}
                         </div>
                     </div>
-                    <hr>
+                    <div class="card-body">
+
                     {{#if bookings}}
                     {{#if isStudent}}
                     <ul>
                         {{#each bookings}}
-                        <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        </div>
-                        <div>
-                            <div>
+                        <div class="card mb-5" style="width: 93%">
+                            <div class="card-body">
                                 <p>Tutor: {{tutor}}</p>
                                 <p>Subject: {{subject}}</p>
                                 <p>Grade: {{grade}}</p>
@@ -42,12 +36,14 @@
                             <div>
                                 <form action="/book/update" method="post">
                                     <input type="hidden" name="key" value="{{id}}">
-                                    <select name="update">
-                                        {{#each updates}}
-                                        <option value="{{key}}">{{name}}</option>
-                                        {{/each}}
-                                    </select>
-                                    <button>update</button>
+                                    <div class="form-group d-flex px-2">
+                                        <select class="form-control" name="update">
+                                            {{#each updates}}
+                                            <option value="{{key}}">{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                        <button class="btn btn-primary">update</button>
+                                    </div>
                                 </form>
                             </div>
                             {{/if}}
@@ -92,6 +88,7 @@
                     <h2>No bookings have been made yet</h2>
                     {{/unless}}
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,16 +1,29 @@
-<h1>Messages</h1>
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
 
-{{#if isVisible}}
-{{#each msgMap}}
-<div class="message-item">
-    <a href="/message/{{id}}">
-        <h4>{{@key}} {{#if unread}}({{unread}}){{/if}}</h4>
-    </a>
-    <em>{{lastText}} - {{time}}</em>
-</div>
-{{/each}}
-{{/if}}
-
-{{#unless isVisible}}
-<h3>You do not have any messages</h3>
-{{/unless}}
+                <div class="card">
+                    <div class="rounded-top d-flex flex-row p-2" style="background-color: whitesmoke; height:200px;">
+                        <h1>Messages</h1>
+                    </div>
+                    <div class="card-body">
+                        {{#if isVisible}}
+                        {{#each msgMap}}
+                        <div class="message-item">
+                            <a href="/message/{{id}}">
+                                <h4>{{@key}} {{#if unread}}({{unread}}){{/if}}</h4>
+                            </a>
+                            <em>{{lastText}} - {{time}}</em>
+                        </div>
+                        {{/each}}
+                        {{/if}}
+                        {{#unless isVisible}}
+                        <h3>You do not have any messages</h3>
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
