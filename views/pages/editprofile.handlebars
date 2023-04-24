@@ -1,58 +1,70 @@
-<h1>Edit profile</h1>
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+            <div class="ms-4 mt-5 mr-2 d-flex flex-column" style="width: 150px;">
+              <img src="/images/avatar.jpeg"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                style="width: 150px; z-index: 1">
+                <div class="d-flex">
+                  {{#unless notMe}}
+                  <a class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;" href="#!">
+                    Edit profile
+                  </a>
+                  {{/unless}}
+                </div>
+            </div>
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5>{{profile.fullname}}</h5>
+              <p>Cape Town, South Africa</p>
+            </div>
+          </div>
+          <div class="p-4 text-black" style="background-color: #f8f9fa;">
+            <div class="d-flex justify-content-end text-center py-1">
 
-<h2>Profile Details</h2>
-<em>You cannot edit your profile yet</em>
-<form action="/profile/edit" method="post">
-    <div>
-        <label for="name">Full name</label>
-        <input type="text" id="name" name="fullname" value="{{profile.fullname}}" required disabled>
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="{{profile.email}}" required disabled>
-    </div>
-    <div>
-        <label for="password">New Password</label>
-        <input type="password" id="password" name="password" autocomplete="on" required disabled>
-    </div>
-    <div>
-        <button type="submit" disabled>Update</button>
-    </div>
-</form>
-
-{{#if isTutor}}
-<h2>Tutor Subjects</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Subject</th>
-            <th>Grade</th>
-            <th>Remove</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#unless tutorSubjects}}
-        <tr>
-            <td></td>
-            <td>
-                No subjects added yet
-            </td>
-            <td></td>
-        </tr>
-        {{/unless}}
-        {{#each tutorSubjects}}
-        <tr>
-            <td>{{subject}}</td>
-            <td>{{grade}}</td>
-            <td>
-                <form action="/subjects/remove" method="post">
+            </div>
+          </div>
+          <div class="card-body p-4 text-black">
+            <div class="">
+              <p class="lead fw-normal mb-1">About</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+                <p class="font-italic mb-1">Full name: {{profile.fullname}}</p>
+                <p class="font-italic mb-1">Email: <a href="mailto:{{profile.email}}">{{profile.email}}</a></p>
+              </div>
+            </div>
+          </div>
+          {{#if isTutor}}
+          <div class="card-body p-4 text-black">
+            <div class="mb-5">
+              <p class="lead fw-normal mb-1">Subjects</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+              {{#if tutorSubjects}}
+                {{#each tutorSubjects}}
+                <p class="font-italic mb-1">{{subject}} - {{grade}} 
+                    {{!---
+                    <form action="/subjects/remove" method="post">
                     <input type="hidden" name="key" value="{{id}}">
-                    <button type="submit">x</button>
+                    <button type="submit">
+                    <span class="fa fa-trash"></span>
+                    </button>
                 </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<a href="/subjects/add"><button>add new subject(s)</button></a>
-{{/if}}
+                    --}}
+                </p>
+                {{/each}}
+              {{/if}}
+              {{#unless tutorSubjects}}
+                <p class="font-italic mb-1">No Subjects</p>
+              {{/unless}}
+              <a href="/subjects/add">add new subject(s)</a>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

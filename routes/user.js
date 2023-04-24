@@ -10,18 +10,19 @@ const calcAverageRating = (ratings) => {
 
     const averageRating = totalWeight / totalReviews
 
-    return averageRating ? averageRating.toFixed(2) : "No "
+    return averageRating ? averageRating.toFixed(2) : 0
 }
 
 const User = (userService, usersService, bookingService) => {
     // get user profile
     const profile = async (req, res) => {
-        let {fullname, id, account_type} = req.user
+        let {fullname, id, account_type, email} = req.user
         let {profile_id} = req.params
         if(profile_id){
             let user = await usersService.findById(profile_id)
             fullname = user.fullname
             account_type = user.account_type
+            email = user.email
         }
         let ratings
         if(account_type === "tutor"){
@@ -41,14 +42,18 @@ const User = (userService, usersService, bookingService) => {
         const currentPage = req.query.page || 1
         const prevPage = currentPage > 1 && +currentPage-1
         const nextPage = !(posts.length < limit) && +currentPage+1 // better than checking the next page
+        // tutor subjects
+        const tutorSubjects = await bookingService.getTutorSubjects(profile_id || id)
         res.render("pages/profile", {
             fullname,
             posts,
             account_type,
             profile_id,
+            email,
             isTutor: account_type === "tutor",
             rating: ratings ? calcAverageRating(ratings):null,
             notMe,
+            tutorSubjects,
             badges: req.badges,
 
             currentPage,

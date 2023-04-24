@@ -1,58 +1,75 @@
-<h1>Profile</h1>
-<h2>Name: {{fullname}} </h2>
-<h2>Type: {{account_type}} </h2>
-{{#if isTutor}}
-<h2>Rating: {{rating}} stars</h2>
-{{/if}}
-
-{{#if notMe}}
-<a href="/message/{{profile_id}}"><button>Message</button></a>
-<a href="/rate/{{profile_id}}"><button>Rate</button></a>
-<a href="/book/{{profile_id}}"><button>Book</button></a>
-{{/if}}
-{{#unless notMe}}
-<a href="/profile/edit"><button>Edit profile</button></a>
-<form action="/post" method="post">
-  <label for="post_text">Post</label>
-  <textarea name="post_text" id="post_text" cols="20" rows="4" required></textarea>
-  <button type="submit">Post</button>
-</form>
-{{/unless}}
-
-{{#if posts}}
-<div>
-  {{#each posts}}
-  <div>
-    <h3> {{fullname}} </h3>
-    <span> {{post_created}} </span>
-    <p> {{post_text}} </p>
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+            <div class="ms-4 mt-5 mr-2 d-flex flex-column" style="width: 150px;">
+              <img src="/images/avatar.jpeg"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                style="width: 150px; z-index: 1">
+                <div class="d-flex">
+                  {{#unless notMe}}
+                  <a class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;" href="/profile/edit">
+                    Edit profile
+                  </a>
+                  {{/unless}}
+                  {{#if notMe}}
+                  <a class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;" href="/message/{{profile_id}}">Message</a>
+                  {{#if isTutor}}
+                  <a class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;" href="/rate/{{profile_id}}">Rate</a>
+                  <a class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;" href="/book/{{profile_id}}">Book</a>
+                  {{/if}}
+                  {{/if}}
+                </div>
+            </div>
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5>{{fullname}}</h5>
+              <p>Cape Town, South Africa</p>
+            </div>
+          </div>
+          <div class="p-4 text-black" style="background-color: #f8f9fa;">
+            <div class="d-flex justify-content-end text-center py-1">
+              <div>
+                {{#if isTutor}}
+                <p class="mb-1 h5">{{rating}}</p>
+                <p class="small text-muted mb-0">Rating</p>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-4 text-black">
+            <div class="">
+              <p class="lead fw-normal mb-1">About</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+                <p class="font-italic mb-1">Role: {{account_type}}</p>
+                <p class="font-italic mb-1">Email: <a href="mailto:{{email}}">{{email}}</a></p>
+              </div>
+            </div>
+          </div>
+          {{#if isTutor}}
+          <div class="card-body p-4 text-black">
+            <div class="mb-5">
+              <p class="lead fw-normal mb-1">Subjects</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+              {{#if tutorSubjects}}
+                {{#each tutorSubjects}}
+                <p class="font-italic mb-1">{{subject}} - {{grade}}</p>
+                {{/each}}
+              {{/if}}
+              {{#unless tutorSubjects}}
+                <p class="font-italic mb-1">No Subjects</p>
+              {{/unless}}
+              </div>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <a href="/post/{{post_id}}">View post</a>
-  </div>
-  {{/each}}
-</div>
-<div>
-  <hr>
-  <ul>
-    {{#if prevPage}}
-    <li>
-      <a href="?page={{prevPage}}">&lt; {{prevPage}}</a>
-    </li>
-    {{/if}}
-    <li>
-      <a href="javascript:;">{{currentPage}}</a>
-    </li>
-    {{#if nextPage}}
-    <li>
-      <a href="?page={{nextPage}}">{{nextPage}} &gt;</a>
-    </li>
-    {{/if}}
-  </ul>
-</div>
-{{/if}}
-{{#unless posts}}
-<div>
-  <h2>The are no posts available.</h2>
-</div>
-{{/unless}}
+</section>

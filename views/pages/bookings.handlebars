@@ -1,77 +1,99 @@
-<h1>Bookings</h1>
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card">
 
-{{#if isStudent}}
-<em>Hello there are you looking for a tutor, <a href="/book/search">search for tutor</a></em>
-{{/if}}
-{{#if isTutor}}
-<em>As a tutor to be booked you need to add the subjects that you are tutoring for, <a href="/profile/edit">add or remove subjects</a></em>
-{{/if}}
+                    <div class="rounded-top d-flex flex-row p-2" style="background-color: whitesmoke; height:200px;">
+                        <div class="ms-4 mt-5 mr-2 d-flex flex-column">
+                            <h1>Bookings</h1>
+                            {{#if isStudent}}
+                            <p class="ml-1">Hello there are you looking for a tutor, <a href="/book/search">search for
+                                    tutor</a></p>
+                            {{/if}}
+                            {{#if isTutor}}
+                            <p class="ml-1">As a tutor to be booked you need to add the subjects that you are tutoring for in your
+                                <a href="/profile/edit">profile page</a></p>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <hr>
+                    {{#if bookings}}
+                    {{#if isStudent}}
+                    <ul>
+                        {{#each bookings}}
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p>Tutor: {{tutor}}</p>
+                                <p>Subject: {{subject}}</p>
+                                <p>Grade: {{grade}}</p>
+                                <p>Date: {{formatDate date}}</p>
+                                <p>Status: {{status}}</p>
+                                {{#if feedback}}<p>Feedback: {{feedback}}</p>{{/if}}
+                            </div>
+                            {{#if updates}}
+                            <div>
+                                <form action="/book/update" method="post">
+                                    <input type="hidden" name="key" value="{{id}}">
+                                    <select name="update">
+                                        {{#each updates}}
+                                        <option value="{{key}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <button>update</button>
+                                </form>
+                            </div>
+                            {{/if}}
+                        </div>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                    {{#if isTutor}}
+                    <ul>
+                        {{#each bookings}}
+                        <div class="card mb-5" style="width: 93%">
+                            <div class="card-body">
+                                <p>Student: {{student}}</p>
+                                <p>Subject: {{subject}}</p>
+                                <p>Grade: {{grade}}</p>
+                                <p>Date: {{formatDate date}}</p>
+                                <p>Status: {{status}}</p>
+                                {{#if feedback}}<p>Feedback: {{feedback}}</p>{{/if}}
+                            </div>
+                            {{#if updates}}
+                            <div>
+                                <form action="/book/update" method="post">
+                                    <input type="hidden" name="key" value="{{id}}">
+                                    <div class="form-group d-flex px-2">
+                                        <select class="form-control" name="update">
+                                            {{#each updates}}
+                                            <option value="{{key}}">{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                        <button class="btn btn-primary">update</button>
+                                    </div>
+                                </form>
+                            </div>
+                            {{/if}}
+                        </div>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                    {{/if}}
 
-{{#if bookings}}
-{{#if isStudent}}
-<ul>
-    {{#each bookings}}
-    <li>
-        <div>
-            <p>Tutor: {{tutor}}</p>
-            <p>Subject: {{subject}}</p>
-            <p>Grade: {{grade}}</p>
-            <p>Date: {{formatDate date}}</p>
-            <p>Status: {{status}}</p>
-            {{#if feedback}}<p>Feedback: {{feedback}}</p>{{/if}}
-        </div>
-        {{#if updates}}
-        <div>
-            <form action="/book/update" method="post">
-                <input type="hidden" name="key" value="{{id}}">
-                <select name="update">
-                    {{#each updates}}
-                    <option value="{{key}}">{{name}}</option>
-                    {{/each}}
-                </select>
-                <button>update</button>
-            </form>
-        </div>
-        {{/if}}
-    </li>
-    {{/each}}
-</ul>
-{{/if}}
-{{#if isTutor}}
-<ul>
-    {{#each bookings}}
-    <li>
-        <div>
-            <p>Student: {{student}}</p>
-            <p>Subject: {{subject}}</p>
-            <p>Grade: {{grade}}</p>
-            <p>Date: {{formatDate date}}</p>
-            <p>Status: {{status}}</p>
-            {{#if feedback}}<p>Feedback: {{feedback}}</p>{{/if}}
-        </div>
-        {{#if updates}}
-        <div>
-            <form action="/book/update" method="post">
-                <input type="hidden" name="key" value="{{id}}">
-                <select name="update">
-                    {{#each updates}}
-                    <option value="{{key}}">{{name}}</option>
-                    {{/each}}
-                </select>
-                <button>update</button>
-            </form>
-        </div>
-        {{/if}}
-    </li>
-    {{/each}}
-</ul>
-{{/if}}
-{{/if}}
+                    {{#unless bookings}}
+                    <h2>No bookings have been made yet</h2>
+                    {{/unless}}
 
-{{#unless bookings}}
-<h2>No bookings have been made yet</h2>
-{{/unless}}
-
-{{!-- <h1>accept / reject bookings</h1>
-<p>bookings can expire?</p>
-<p>show student / tutor booking table</p> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
