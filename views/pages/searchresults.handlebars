@@ -34,7 +34,9 @@
                             {{#each searchResults}}
                             <div class="card p-2 mb-3">
                                 <div>
+                                    <a href="/profile/{{id}}">
                                     <h3>{{fullname}}</h3>
+                                    </a>
                                     <p>{{subject_name}} - {{grade_name}}</p>
                                     <a href="/book/{{id}}"><button class="btn btn-primary">book</button></a>
                                 </div>

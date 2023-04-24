@@ -80,7 +80,8 @@ const BookingService = (db) => {
     const getUserBookings = async (user) => {
         return await db.any(`
             SELECT b.booking_id AS id, 
-            m.fullname AS student, m2.fullname AS tutor, 
+            m.fullname AS student, m.id AS student_id,
+            m2.fullname AS tutor, m2.id AS tutor_id,
             s.subject_name AS subject, g.grade_name AS grade, 
             b.booking_date AS date, b.booking_status AS status, 
             b.booking_feedback AS feedback
