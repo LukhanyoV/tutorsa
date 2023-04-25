@@ -10,7 +10,7 @@ const UserAuth = () => {
     
     const checkNotAuthenticated = (req, res, next) => {
         if (req.isAuthenticated()) {
-            return res.redirect('/')
+            return res.redirect('/home')
         }
         next()
     }

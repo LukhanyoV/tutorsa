@@ -42,7 +42,6 @@ const Bookings = (bookingService, usersService) => {
                 return {...booking}
             }
         })
-        console.log(bookings)
         res.render("pages/bookings", {
             isStudent: account_type === "student",
             isTutor: account_type === "tutor",
