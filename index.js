@@ -70,6 +70,7 @@ app.use(async (req, res, next) => {
 // main page
 app.get("/", (req, res) => res.render("index", {
     layout: "dashboard",
+    isLoggedIn: !!req.user
 }))
 
 // user authentication pages
